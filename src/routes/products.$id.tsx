@@ -54,7 +54,7 @@ function ProductDetail() {
             />
           </div>
           <div className="mt-4 grid grid-cols-4 gap-3">
-            {product.images.map((img, i) => (
+            {product.images.map((img: string, i: number) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
