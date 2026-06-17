@@ -10,7 +10,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ShopSphere — Modern Marketplace" },
-      { name: "description", content: "Discover thoughtfully curated electronics, fashion, home essentials and more." },
+      {
+        name: "description",
+        content: "Discover thoughtfully curated electronics, fashion, home essentials and more.",
+      },
     ],
   }),
   component: Home,
@@ -24,7 +27,8 @@ const slides = [
     cta: "Shop Electronics",
     href: "/products",
     category: "Electronics",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80",
   },
   {
     eyebrow: "Fashion Collection",
@@ -33,7 +37,8 @@ const slides = [
     cta: "Explore Fashion",
     href: "/products",
     category: "Fashion",
-    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=80",
   },
   {
     eyebrow: "Home Essentials",
@@ -42,7 +47,8 @@ const slides = [
     cta: "Shop Home",
     href: "/products",
     category: "Home Decor",
-    image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
@@ -68,7 +74,11 @@ function Home() {
               transition={{ duration: 0.6 }}
               className="absolute inset-x-4 inset-y-6 overflow-hidden rounded-3xl bg-primary shadow-elegant sm:inset-x-6"
             >
-              <img src={slides[i].image} alt={slides[i].title} className="absolute inset-0 h-full w-full object-cover opacity-60" />
+              <img
+                src={slides[i].image}
+                alt={slides[i].title}
+                className="absolute inset-0 h-full w-full object-cover opacity-60"
+              />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary/40 to-transparent" />
               <div className="relative flex h-full max-w-2xl flex-col justify-end p-8 text-primary-foreground sm:p-14">
                 <motion.span
@@ -102,12 +112,19 @@ function Home() {
                   className="mt-7 flex gap-3"
                 >
                   <Link to="/products" search={{ category: slides[i].category }}>
-                    <Button size="lg" className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Button
+                      size="lg"
+                      className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90"
+                    >
                       {slides[i].cta} <ArrowRight className="ml-1 h-4 w-4" />
                     </Button>
                   </Link>
                   <Link to="/categories">
-                    <Button size="lg" variant="outline" className="rounded-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="rounded-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+                    >
                       Browse all
                     </Button>
                   </Link>
@@ -132,10 +149,15 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="mb-10 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Shop by category</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+              Shop by category
+            </p>
             <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Pick your aisle</h2>
           </div>
-          <Link to="/categories" className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex">
+          <Link
+            to="/categories"
+            className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex"
+          >
             View all <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
@@ -153,9 +175,15 @@ function Home() {
                 search={{ category: c.name }}
                 className="group relative block aspect-square overflow-hidden rounded-2xl"
               >
-                <img src={c.image} alt={c.name} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img
+                  src={c.image}
+                  alt={c.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <span className="absolute bottom-3 left-3 text-sm font-semibold text-white">{c.name}</span>
+                <span className="absolute bottom-3 left-3 text-sm font-semibold text-white">
+                  {c.name}
+                </span>
               </Link>
             </motion.div>
           ))}
@@ -166,15 +194,22 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
         <div className="mb-10 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Just landed</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+              Just landed
+            </p>
             <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Latest products</h2>
           </div>
-          <Link to="/products" className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex">
+          <Link
+            to="/products"
+            className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex"
+          >
             Shop all <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {latest.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
+          {latest.map((p, i) => (
+            <ProductCard key={p.id} product={p} index={i} />
+          ))}
         </div>
       </section>
 

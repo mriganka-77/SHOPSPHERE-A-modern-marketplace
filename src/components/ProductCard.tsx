@@ -22,7 +22,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
       <Link to="/products/$id" params={{ id: product.id }} className="absolute inset-0 z-10 block">
         <span className="sr-only">View {product.name}</span>
       </Link>
-      
+
       <div className="relative aspect-square overflow-hidden bg-muted">
         <img
           src={product.image}
@@ -37,7 +37,9 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
         )}
       </div>
       <div className="p-4 flex flex-col flex-grow">
-        <p className="text-[11px] uppercase tracking-widest text-muted-foreground">{product.category}</p>
+        <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
+          {product.category}
+        </p>
         <h3 className="mt-1 line-clamp-1 font-display text-base font-semibold leading-snug">
           {product.name}
         </h3>

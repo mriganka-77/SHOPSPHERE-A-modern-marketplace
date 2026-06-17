@@ -31,10 +31,26 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold">Quick Links</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/" className="hover:text-foreground">Home</Link></li>
-            <li><Link to="/products" className="hover:text-foreground">Products</Link></li>
-            <li><Link to="/about" className="hover:text-foreground">About Us</Link></li>
-            <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+            <li>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/products" className="hover:text-foreground">
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-foreground">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-foreground">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -43,7 +59,9 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             {["Electronics", "Fashion", "Shoes", "Accessories", "Home Decor", "Books"].map((c) => (
               <li key={c}>
-                <Link to="/products" search={{ category: c }} className="hover:text-foreground">{c}</Link>
+                <Link to="/products" search={{ category: c }} className="hover:text-foreground">
+                  {c}
+                </Link>
               </li>
             ))}
           </ul>

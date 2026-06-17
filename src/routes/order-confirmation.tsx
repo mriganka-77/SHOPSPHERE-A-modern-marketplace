@@ -49,7 +49,9 @@ function OrderConfirmation() {
       >
         <p className="text-xs uppercase tracking-widest text-muted-foreground">Order Number</p>
         <p className="mt-1 font-display text-2xl font-bold">{order}</p>
-        <p className="mt-4 text-sm">Status: <span className="font-semibold text-accent">Confirmed</span></p>
+        <p className="mt-4 text-sm">
+          Status: <span className="font-semibold text-accent">Confirmed</span>
+        </p>
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -57,8 +59,16 @@ function OrderConfirmation() {
         transition={{ delay: 0.7 }}
         className="mt-8 flex flex-wrap justify-center gap-3"
       >
-        <Link to="/products"><Button size="lg" className="rounded-full">Continue Shopping</Button></Link>
-        <Link to="/"><Button size="lg" variant="outline" className="rounded-full">View Products</Button></Link>
+        <Link to="/products">
+          <Button size="lg" className="rounded-full">
+            Continue Shopping
+          </Button>
+        </Link>
+        <Link to="/">
+          <Button size="lg" variant="outline" className="rounded-full">
+            View Products
+          </Button>
+        </Link>
       </motion.div>
     </div>
   );

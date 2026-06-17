@@ -24,7 +24,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const raw = typeof window !== "undefined" ? localStorage.getItem(KEY) : null;
       if (raw) setItems(JSON.parse(raw));
-    } catch {}
+    } catch (e) {
+      console.warn("Failed to load cart from localStorage:", e);
+    }
     setHydrated(true);
   }, []);
 
@@ -35,7 +37,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const add: CartCtx["add"] = (p, qty = 1) =>
     setItems((cur) => {
       const ex = cur.find((i) => i.product.id === p.id);
-      if (ex) return cur.map((i) => (i.product.id === p.id ? { ...i, quantity: i.quantity + qty } : i));
+      if (ex)
+        return cur.map((i) => (i.product.id === p.id ? { ...i, quantity: i.quantity + qty } : i));
       return [...cur, { product: p, quantity: qty }];
     });
 

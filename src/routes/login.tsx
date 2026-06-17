@@ -40,12 +40,21 @@ function LoginPage() {
 
           <form onSubmit={submit} className="mt-8 space-y-4">
             <div>
-              <Label htmlFor="email" className="mb-1 block">Email</Label>
+              <Label htmlFor="email" className="mb-1 block">
+                Email
+              </Label>
               <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div>
-              <Label htmlFor="password" className="mb-1 block">Password</Label>
-              <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Label htmlFor="password" className="mb-1 block">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <Button type="submit" size="lg" className="w-full mt-2 rounded-full">
               {loading ? "Signing in..." : "Sign in"}
@@ -53,7 +62,10 @@ function LoginPage() {
           </form>
 
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            New here? <Link to="/" className="text-accent underline">Continue as guest</Link>
+            New here?{" "}
+            <Link to="/" className="text-accent underline">
+              Continue as guest
+            </Link>
           </p>
         </motion.div>
 

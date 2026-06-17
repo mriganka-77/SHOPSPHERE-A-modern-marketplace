@@ -23,7 +23,12 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="font-display text-7xl font-bold">404</h1>
         <p className="mt-3 text-muted-foreground">The page you're looking for doesn't exist.</p>
-        <a href="/" className="mt-6 inline-block rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground">Go home</a>
+        <a
+          href="/"
+          className="mt-6 inline-block rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
+        >
+          Go home
+        </a>
       </div>
     </div>
   );
@@ -31,15 +36,30 @@ function NotFoundComponent() {
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
-  useEffect(() => { console.error(error); }, [error]);
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-xl font-semibold">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">Something went wrong on our end.</p>
         <div className="mt-6 flex justify-center gap-2">
-          <button onClick={() => { router.invalidate(); reset(); }} className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Try again</button>
-          <a href="/" className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium">Go home</a>
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+          >
+            Try again
+          </button>
+          <a
+            href="/"
+            className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium"
+          >
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -54,7 +74,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "ShopSphere — Modern Marketplace" },
       { name: "description", content: "Thoughtfully curated electronics, fashion, home and more." },
       { property: "og:title", content: "ShopSphere — Modern Marketplace" },
-      { property: "og:description", content: "Thoughtfully curated electronics, fashion, home and more." },
+      {
+        property: "og:description",
+        content: "Thoughtfully curated electronics, fashion, home and more.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -77,15 +100,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <head><HeadContent /></head>
-      <body>{children}<Scripts /></body>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
     </html>
   );
 }
 
 function PathScrollReset() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior }); }, [pathname]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
   return null;
 }
 
@@ -98,7 +128,9 @@ function RootComponent() {
           <PathScrollReset />
           <div className="flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-1"><Outlet /></main>
+            <main className="flex-1">
+              <Outlet />
+            </main>
             <Footer />
           </div>
           <ScrollToTop />

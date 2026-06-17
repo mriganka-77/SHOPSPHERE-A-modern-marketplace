@@ -26,7 +26,9 @@ export const Route = createFileRoute("/products/$id")({
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-4 py-20 text-center">
       <h1 className="font-display text-3xl font-bold">Product not found</h1>
-      <Link to="/products" className="mt-4 inline-block text-accent underline">Back to products</Link>
+      <Link to="/products" className="mt-4 inline-block text-accent underline">
+        Back to products
+      </Link>
     </div>
   ),
   component: ProductDetail,
@@ -69,31 +71,55 @@ function ProductDetail() {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">{product.category}</p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+            {product.category}
+          </p>
           <h1 className="mt-3 font-display text-3xl font-bold sm:text-5xl">{product.name}</h1>
           <div className="mt-4 flex items-center gap-3">
             <div className="flex items-center gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className={`h-4 w-4 ${i < Math.round(product.rating) ? "fill-accent text-accent" : "text-muted-foreground/30"}`} />
+                <Star
+                  key={i}
+                  className={`h-4 w-4 ${i < Math.round(product.rating) ? "fill-accent text-accent" : "text-muted-foreground/30"}`}
+                />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground">{product.rating} · {product.reviews} reviews</span>
+            <span className="text-sm text-muted-foreground">
+              {product.rating} · {product.reviews} reviews
+            </span>
           </div>
           <p className="mt-6 font-display text-4xl font-bold">{formatPrice(product.price)}</p>
           <p className="mt-6 text-muted-foreground">{product.description}</p>
 
           <div className="mt-8 flex items-center gap-4">
             <div className="flex items-center rounded-full border border-border">
-              <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="grid h-11 w-11 place-items-center"><Minus className="h-4 w-4" /></button>
+              <button
+                onClick={() => setQty((q) => Math.max(1, q - 1))}
+                className="grid h-11 w-11 place-items-center"
+              >
+                <Minus className="h-4 w-4" />
+              </button>
               <span className="w-10 text-center font-semibold">{qty}</span>
-              <button onClick={() => setQty((q) => q + 1)} className="grid h-11 w-11 place-items-center"><Plus className="h-4 w-4" /></button>
+              <button
+                onClick={() => setQty((q) => q + 1)}
+                className="grid h-11 w-11 place-items-center"
+              >
+                <Plus className="h-4 w-4" />
+              </button>
             </div>
             <Button
               size="lg"
               variant="secondary"
               className="rounded-full"
-              onClick={() => { add(product, qty); toast.success(`Added ${qty} × ${product.name}`); }}
+              onClick={() => {
+                add(product, qty);
+                toast.success(`Added ${qty} × ${product.name}`);
+              }}
             >
               <ShoppingBag className="mr-2 h-4 w-4" /> Add to cart
             </Button>
@@ -129,7 +155,9 @@ function ProductDetail() {
         <section className="mt-24">
           <h2 className="font-display text-2xl font-bold sm:text-3xl">You might also like</h2>
           <div className="mt-8 grid grid-cols-2 gap-5 md:grid-cols-4">
-            {related.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
+            {related.map((p, i) => (
+              <ProductCard key={p.id} product={p} index={i} />
+            ))}
           </div>
         </section>
       )}
