@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Star, Minus, Plus, ShoppingBag, Truck, ShieldCheck, RotateCcw } from "lucide-react";
 import { getProduct, getRelated, formatPrice } from "@/data/products";
@@ -35,6 +35,7 @@ export const Route = createFileRoute("/products/$id")({
 function ProductDetail() {
   const { product } = Route.useLoaderData();
   const { add } = useCart();
+  const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
   const related = getRelated(product);
@@ -90,10 +91,22 @@ function ProductDetail() {
             </div>
             <Button
               size="lg"
-              className="flex-1 rounded-full bg-gradient-accent text-accent-foreground hover:opacity-90"
+              variant="secondary"
+              className="rounded-full"
               onClick={() => { add(product, qty); toast.success(`Added ${qty} × ${product.name}`); }}
             >
               <ShoppingBag className="mr-2 h-4 w-4" /> Add to cart
+            </Button>
+            <Button
+              size="lg"
+              className="flex-1 rounded-full bg-gradient-accent text-accent-foreground hover:opacity-90"
+              onClick={() => {
+                add(product, qty);
+                toast.success(`Added ${qty} × ${product.name}`);
+                navigate({ to: "/checkout" });
+              }}
+            >
+              Buy Now
             </Button>
           </div>
 

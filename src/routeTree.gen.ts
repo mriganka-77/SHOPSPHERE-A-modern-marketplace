@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as OrderConfirmationRouteImport } from './routes/order-confirmation'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CategoriesRouteImport } from './routes/categories'
@@ -33,6 +34,11 @@ const ProductsRoute = ProductsRouteImport.update({
 const OrderConfirmationRoute = OrderConfirmationRouteImport.update({
   id: '/order-confirmation',
   path: '/order-confirmation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/products': typeof ProductsRouteWithChildren
   '/search': typeof SearchRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/products': typeof ProductsRouteWithChildren
   '/search': typeof SearchRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/products': typeof ProductsRouteWithChildren
   '/search': typeof SearchRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/categories'
     | '/checkout'
     | '/contact'
+    | '/login'
     | '/order-confirmation'
     | '/products'
     | '/search'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/categories'
     | '/checkout'
     | '/contact'
+    | '/login'
     | '/order-confirmation'
     | '/products'
     | '/search'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/categories'
     | '/checkout'
     | '/contact'
+    | '/login'
     | '/order-confirmation'
     | '/products'
     | '/search'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   CategoriesRoute: typeof CategoriesRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  LoginRoute: typeof LoginRoute
   OrderConfirmationRoute: typeof OrderConfirmationRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   SearchRoute: typeof SearchRoute
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/order-confirmation'
       fullPath: '/order-confirmation'
       preLoaderRoute: typeof OrderConfirmationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -253,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   CategoriesRoute: CategoriesRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  LoginRoute: LoginRoute,
   OrderConfirmationRoute: OrderConfirmationRoute,
   ProductsRoute: ProductsRouteWithChildren,
   SearchRoute: SearchRoute,
@@ -260,3 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
